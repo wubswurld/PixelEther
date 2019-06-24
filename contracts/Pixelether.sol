@@ -644,37 +644,50 @@ contract ERC721 is ERC165, IERC721 {
 pragma solidity^0.5.0;
 
 
-contract Pixelether is ERC721 {
-    constructor() ERC721() public {}
+contract Pixelether is ERC721{
+    
+    string public Name = '';
 
-mapping(uint256 => uint256) internal allTokensIndex;
+    struct Item{
+        string name;
+        uint level;
+        uint rarityLevel;
+    }
 
-struct ownedPixels {
-    string title;
-    string artist;
-    uint256 id;
-}
+    mapping(uint256 => string) internal tokenIdToName;
+    mapping(string => uint256) internal titleToTokenId;
 
-ownedPixels[] public storePixels;
-address public owner;
+    Item[] public items; // First Item has Index 0
+    address public owner;
+    
+    function totalSupply() public view returns (uint) {
+        return items.length;
+    }
 
-function setowner() public {
-    owner = msg.sender;
-}
+    function getTokenName(uint256 tokenId) view public returns (string memory){
+    return tokenIdToName[tokenId];
+    }
 
-function mintcoin() public {
-     uint256 _id = storePixels.length;
-    _mint(msg.sender, _id);
-}
+    function getTokenId(string memory name) view public returns (uint) {
+    return titleToTokenId[name];
+    }
 
-function uploadPixel(string memory _title, string memory _artist) public {
-    setowner();
-    uint256 _id = storePixels.length;
-    storePixels.push(ownedPixels(_title, _artist, _id));
-    _mint(msg.sender, _id); 
-}
+    function ItemCheck() public {
+        owner = msg.sender; // The Sender is the Owner; Ethereum Address of the Owner
+    }
+    
+    function createItem(string memory _name) public{
+        uint id = items.length;
+        items.push(Item(_name,5,1));
+        _mint(msg.sender,id);
+        getName(id);
+    }
 
-function getPixelfromId(uint id) public view returns(string memory, string memory, uint256) {
-        return(storePixels[id].artist, storePixels[id].title, storePixels[id].id);
+    function getItemfromId(uint256 id) public view returns(string memory, uint, uint) {
+        return(items[id].name, items[id].level, items[id].rarityLevel);
+    }
+
+    function getName(uint256 id) public {
+        Name = items[id].name;
     }
 }
