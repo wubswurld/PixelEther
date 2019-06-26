@@ -647,15 +647,20 @@ pragma solidity^0.5.0;
 contract Pixelether is ERC721{
     
     string public Name = '';
+    string public Artist = '';
+    uint256 public Id = 0;
+    uint256 public test;
 
     struct Item{
         string name;
-        uint level;
+        string artist;
+        uint256 id;
         uint rarityLevel;
     }
 
     mapping(uint256 => string) internal tokenIdToName;
     mapping(string => uint256) internal titleToTokenId;
+    mapping (uint256 => address) public IndexToOwner;
 
     Item[] public items; // First Item has Index 0
     address public owner;
@@ -676,18 +681,43 @@ contract Pixelether is ERC721{
         owner = msg.sender; // The Sender is the Owner; Ethereum Address of the Owner
     }
     
-    function createItem(string memory _name) public{
+    function createItem(string memory _name, string memory _artist) public{
         uint id = items.length;
-        items.push(Item(_name,5,1));
+        IndexToOwner[id] = msg.sender;
+        items.push(Item(_name,_artist, id, 1));
         _mint(msg.sender,id);
         getName(id);
     }
 
-    function getItemfromId(uint256 id) public view returns(string memory, uint, uint) {
-        return(items[id].name, items[id].level, items[id].rarityLevel);
-    }
-
     function getName(uint256 id) public {
         Name = items[id].name;
+        Artist = items[id].artist;
+        Id = items[id].id;
     }
+
+    function getPixelfromId(uint id) public view returns(string memory, string memory, uint256) {
+        return(items[id].name, items[id].artist, items[id].id);
+    }
+
+   function tokensOfOwner(address _owner) external view returns(uint256[] memory ownersTokens) {
+        uint256 tokenCount = balanceOf(_owner);
+
+        if (tokenCount == 0) {
+            // Return an empty array
+            return new uint256[](0);
+        } else {
+            uint256[] memory result = new uint256[](tokenCount);
+            uint256 total = totalSupply();
+            uint256 resultIndex = 0;
+            uint256 PixelId;
+
+            for (PixelId = 0; PixelId <= total; PixelId++) {
+                if (IndexToOwner[PixelId] == msg.sender) {
+                    result[resultIndex] = PixelId;
+                    resultIndex++;
+                }
+            }
+            return result;
+        }
+   }
 }

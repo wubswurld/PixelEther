@@ -1,4 +1,5 @@
 import React from "react";
+import Maptok from "./maptokens";
 class Trans extends React.Component {
   state = { 
       dataKey: null, 
@@ -8,7 +9,8 @@ class Trans extends React.Component {
       title: '',
       artist: '',
       id: '',
-      iddata: null
+      iddata: null,
+      tokensarray: [],
     };
 componentDidMount() {
     const { drizzle, drizzleState } = this.props;
@@ -16,8 +18,12 @@ componentDidMount() {
     this.setState({contractstate: contract});
     var balanceOf = contract.methods["balanceOf"];
     var itemCheck = contract.methods["ItemCheck"];
+    var tokensOfOwner = contract.methods["tokensOfOwner"];
+    var owners = tokensOfOwner(drizzleState.accounts[0]).call()
+    .then((req, res) => {
+                this.setState({ tokensarray: req});
+    });
     var check = itemCheck().call().then((req, res) => {
-        console.log(req);
     })
     var dataKey = balanceOf(drizzleState.accounts[0]).call().then((req, res) => {
         this.setState({ dataKey: req });
@@ -29,43 +35,32 @@ componentDidMount() {
 handleSubmit = (e) => {
     var mintcoin = this.state.contractstate.methods["mintcoin"];
     var data = mintcoin().send().then((req, res) => {
-        console.log(req);
     })
-    console.log(data)
 }
 newSubmit = (e) => {
     const { drizzle, drizzleState } = this.props;
     e.preventDefault();
     var newcoin = this.state.contractstate.methods["createItem"];
-    var coindata = newcoin(this.state.title).send(
+    var coindata = newcoin(this.state.title, this.state.artist).send(
         {
             gas: 5000000,
             gasPrice: '8000000000'
         }
     ).then((req, res) => {
-        console.log(req);
-        console.log(res)
         this.setState({data: req})
     })
     this.setState({coindatastate: coindata})
-    console.log(coindata);
 }
 
 idSubmit = (e) => {
     const { drizzle, drizzleState } = this.props;
 
     e.preventDefault();
-    var newcoin = this.state.contractstate.methods["getName"];
-    var ita = newcoin(this.state.id).send({
-        from: drizzleState.accounts[0],
-        gas: 5000000,
-        gasPrice: '8000000000'
-    }).then((req, res) => {
-        console.log(req)
-        console.log(res);
+    var newcoin = this.state.contractstate.methods["getPixelfromId"];
+    var ita = newcoin(this.state.id).call().then((req, res) => {
+        console.log(req);
+        this.setState({iddata: req.v});
     })
-    console.log(ita);
-    this.setState({iddata: ita});
 }
 updateValue = (event) => {
     this.setState({[event.target.name]: event.target.value});
@@ -79,33 +74,31 @@ render() {
     const { drizzleState } = this.props;
     const { Pixelether } = this.props.drizzleState.contracts;
     const {dataKey, contractstate} = this.state;
-    // const myString = contractstate.getTokenName[this.state.iddata];
-    // console.log(myString);
-    console.log(this.state.data);
-    // console.log(this.state.id);
 return (
     <div>
-<div>
-    <form onSubmit={this.handleSubmit}>
-    <button type="submit">Mint</button>
-    </form>
-</div>
-<br></br>
-<div>
-    <form onSubmit={this.newSubmit}>
+    <div>
+        <form onSubmit={this.newSubmit}>
                 <input onChange={this.updateValue} className='form-input' id="form-input"value={this.state.title} name='title' type='text' placeholder="Title"/>
                 <input onChange={this.updateValue} className='form-input' name='artist' value={this.state.artist} type='text' placeholder="Artist"/>
                 <br />
                 <button type="submit">submit</button>
-    </form>
+        </form>
     </div>
     <br />
-    <div>
-    <form onSubmit={this.idSubmit}>
+    {/* <div>
+        <form onSubmit={this.idSubmit}>
                 <input onChange={this.updateValue} className='form-input' id="form-input"value={this.state.id} name='id' type='text' placeholder="Id"/>
                 <br />
         <button type="submit">submit</button>
-    </form>
+        </form>
+    </div> */}
+    <div>
+        <h3>My tokens:</h3>
+        <Maptok
+          drizzle={this.props.drizzle}
+          drizzleState={this.state.drizzleState}
+          mytoks={this.state.tokensarray}
+        ></Maptok>
     </div>
 </div>
 )

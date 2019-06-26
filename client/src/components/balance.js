@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from 'reactstrap';
+
 class Balance extends React.Component {
   state = { dataKey: null };
 componentDidMount() {
@@ -8,7 +10,6 @@ componentDidMount() {
     var balanceOf = contract.methods["balanceOf"];
 
     var dataKey = balanceOf(drizzleState.accounts[0]).call().then((req, res) => {
-        console.log(req)
         this.setState({ dataKey: req });
     })
 // save the `dataKey` to local component state for later reference
@@ -25,19 +26,18 @@ render() {
 // using the saved `dataKey`, get the variable we're interested in
     // const sum = Pixelether.sum[this.state.dataKey];
 // if it exists, then we display its value
-return (<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">PixelEther</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <p class="nav-item nav-link active" id="acct" href="#">Account: {drizzleState.accounts[0]} <span class="sr-only">(current)</span></p>
-      {/* <p class="nav-item nav-link" id="acct" href="#">Pixel Balance: {dataKey}</p> */}
-    </div>
-  </div>
+return (
+<div>
+  <div id="main">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <a className="navbar-brand" href="#">PixelEther</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <Button outline color="secondary" className="wubs">Wallet</Button>
+            </li>
+        </ul>
 </nav>
+</div>
 <br></br>
 <div>
     <h3>Pixel Asset Balance:</h3>

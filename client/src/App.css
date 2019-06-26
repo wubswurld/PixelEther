@@ -33,5 +33,22 @@
 }
 
 #acct {
-  margin-top: 3%;
+  margin-top: 4%;
 }
+
+/* .wubs {
+  max-height: 44px;
+  margin-top: 3%;
+  max-width: 100px;
+} */
+
+#main {
+  margin: 0 auto;
+}
+
+/* #ether {
+  float: left;
+}
+#ethbtn {
+  margin-left: 200px;
+} */
