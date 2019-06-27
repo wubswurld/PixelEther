@@ -34,10 +34,12 @@ class Maptok extends React.Component {
   }
 
   render() {
-    const { drizzle, mytoks } = this.props;
+    const { drizzle, mytoks, ipfshash } = this.props;
     //   const { dataKey, artist, id } = this.state;
      const contract = drizzle.contracts.Pixelether;
      var newcoin = contract.methods["getPixelfromId"];
+     var imgsrc = "https://gateway.ipfs.io/ipfs/";
+     console.log(imgsrc);
      var tokens = []
      if(this.state.initalRender === false){
         const list = mytoks.map((key) => newcoin(key).call().then((req, res) => {
@@ -52,6 +54,8 @@ class Maptok extends React.Component {
          <h4 key={key[0]}>{key[0]}</h4>
          <p key={key[1]}>Artist: {key[1]}</p>
          <p key={key[2]}>Id: {key[2]}</p>
+         <p key={key[3]}>Ipfs hash: {key[3]}</p>
+         <img src={imgsrc + key[3]} className="imgurl"></img>
          </div>
        </div>
      )

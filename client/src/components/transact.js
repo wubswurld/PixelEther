@@ -125,6 +125,7 @@ return (
           drizzle={this.props.drizzle}
           drizzleState={this.state.drizzleState}
           mytoks={this.state.tokensarray}
+          ipfsHash={this.state.ipfsHash}
         ></Maptok>
         <div className="container">
           <div class="row justify-content-between">
