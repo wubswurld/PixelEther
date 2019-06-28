@@ -30,8 +30,8 @@ render() {
 // if it exists, then we display its value
 return (
 <div>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="#">PixelEther</a>
+    <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+  <a className="navbar-brand" id="title" href="#">PixelEther</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <Modalexport data={this.state.dataKey}
@@ -41,8 +41,8 @@ return (
             </li>
         </ul>
 </nav>
+<br></br>
 </div>)
-    // return <p>Sum: {sum && sum.value}</p>;
   }
 }
 export default Balance;

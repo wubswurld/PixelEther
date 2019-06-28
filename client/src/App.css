@@ -1,5 +1,15 @@
+html {
+  background-color: #212529;
+}
+
 .App {
   text-align: center;
+  /* background-color: #2b2e35; */
+  background-color: #212529;
+}
+
+h3 {
+  color: white;
 }
 
 .App-logo {
@@ -41,7 +51,8 @@
 }
 
 .imgurl {
-  height: 300px;
+  height: 350px;
+  width: 350px;
 }
 .grid {
   display: grid;
@@ -76,6 +87,49 @@
   min-height: 100px;
   /* width: 50%; */
   /* max-width: 500px; */
+  /* background-color: #2e3858; */
   background-size: cover;
+  border: 0px solid rgba(0,0,0,.125);
   background-position: 50% 50%;
+}
+
+#title {
+  color: white;
+}
+#login {
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80%;
+  /* margin-left: 28.7%; */
+  left: 0;
+  right: 0;
+  opacity: 0;
+  /* transition: .5s ease; */
+  background-color: #666;
+}
+
+.overlaycontainer {
+  position: relative;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+  margin: 0% auto;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }

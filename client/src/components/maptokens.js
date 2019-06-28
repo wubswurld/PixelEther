@@ -1,7 +1,9 @@
 import React from "react";
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
 
 class Maptok extends React.Component {
-  state = { dataKey: null, dataKeys: null, id: 0, artist: null, newone: [], initalRender: false, allTokens: []};
+  state = { dataKey: null, dataKeys: null, id: 0, artist: null, newone: [], initalRender: false, allTokens: [], modal: false};
 
   componentDidMount() {
     const { drizzle, mytoks } = this.props;
@@ -50,13 +52,18 @@ class Maptok extends React.Component {
      }
      const listItems = this.state.allTokens.map((key) =>
      <div class="col-sm">
-     <div className="" key={key}>
+     <div className="overlaycontainer" key={key}>
        {/* <div className="card-body"> */}
          {/* <h4 key={key[0]}>{key[0]}</h4>
          <p key={key[1]}>Artist: {key[1]}</p>
          <p key={key[2]}>Id: {key[2]}</p>
          <p key={key[3]}>Ipfs hash: {key[3]}</p> */}
          <img src={imgsrc + key[3]} className="imgurl"></img>
+         <div className="overlay" key={key}>
+            <div className="text">
+            <h4 key={key[0]}>{key[0]}</h4>
+            </div>
+        </div>
          </div>
         {/* </div> */}
         <br></br>

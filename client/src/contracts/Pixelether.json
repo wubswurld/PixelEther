@@ -31634,15 +31634,15 @@
     "version": "0.5.8+commit.23d335f2.Emscripten.clang"
   },
   "networks": {
-    "1561673186828": {
+    "1561697512589": {
       "events": {},
       "links": {},
-      "address": "0xa364E222d1DBE5265df665eD2b8e545663cE4576",
-      "transactionHash": "0xa9a85c6e935fa41263442e5e34629c2c5d7728ac446cc119a217fbf42f87d93e"
+      "address": "0x6665616436351449255C4b613A47C72d6aB4A529",
+      "transactionHash": "0x0535f3d906257ed4227e69c47c324cc2382ac321518e249bc450e101570f5c7f"
     }
   },
   "schemaVersion": "3.0.11",
-  "updatedAt": "2019-06-27T22:08:00.449Z",
+  "updatedAt": "2019-06-28T04:52:46.374Z",
   "devdoc": {
     "methods": {
       "approve(address,uint256)": {

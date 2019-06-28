@@ -20,7 +20,7 @@ class Modalexport extends Component {
       const { data, drizzleState, drizzle } = this.props
     return (
       <div className="signin">
-        <Button outline color="primary" size="sm" id="login" onClick={this.toggle}>{this.props.buttonLabel}Your Wallet</Button>
+        <Button outline color="secondary" size="sm" id="login" onClick={this.toggle}>{this.props.buttonLabel}Your Wallet</Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} id="modal">
           <ModalHeader toggle={this.toggle}>Information</ModalHeader>
           <ModalBody>
