@@ -49,14 +49,17 @@ class Maptok extends React.Component {
     }));
      }
      const listItems = this.state.allTokens.map((key) =>
-     <div className="card" key={key}>
-       <div className="card-body">
-         <h4 key={key[0]}>{key[0]}</h4>
+     <div class="col-sm">
+     <div className="" key={key}>
+       {/* <div className="card-body"> */}
+         {/* <h4 key={key[0]}>{key[0]}</h4>
          <p key={key[1]}>Artist: {key[1]}</p>
          <p key={key[2]}>Id: {key[2]}</p>
-         <p key={key[3]}>Ipfs hash: {key[3]}</p>
+         <p key={key[3]}>Ipfs hash: {key[3]}</p> */}
          <img src={imgsrc + key[3]} className="imgurl"></img>
          </div>
+        {/* </div> */}
+        <br></br>
        </div>
      )
     // console.log(this.state.newone);
@@ -65,8 +68,10 @@ class Maptok extends React.Component {
     //     this.setState({newone: req});
     // }));
     return(
-        <div>
+        <div class="container">
+        <div class="row">
             {listItems}
+        </div>
         </div>
     )
 
