@@ -1,7 +1,21 @@
 import React, { Component } from "react";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import clsx from 'clsx';
 
+const useStyles = makeStyles(theme => ({
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+    dense: {
+      marginTop: 19,
+    },
+  }));
+  
 class Newtoken extends Component {
-    render() {
+render() {
 const inputBox = document.querySelector('.input-box');
 const arrows = document.querySelectorAll('.arrow');
 const usernameInput = document.querySelector('#username-input');
@@ -29,13 +43,20 @@ arrowsArray.forEach(current => {
     })
 })
 
-        const { title, artist, updateValue, newSubmit, captureFile } = this.props
+        const { title, artist, updateValue, newSubmit, captureFile } = this.props;
         return (
             <div>
+                <h3>Create a new erc721!</h3>
             <form onSubmit={newSubmit}>
-                    <input onChange={updateValue} className='form-input' id="form-input"value={title} name='title' type='text' placeholder="Title"/>
-                    <input onChange={updateValue} className='form-input' name='artist' value={artist} type='text' placeholder="Artist"/>
-                    <input type = "file" onChange = {captureFile} />
+            <div className="check">
+                    <TextField id="standard-dense" label="Title" margin="dense" onChange={updateValue} className="check" value={title} name='title' type='text'/>
+                    </div>
+                    <div className="check1">
+                    <TextField id="standard-dense" label="Artist" margin="dense" onChange={updateValue} className='form-input' name='artist' value={artist} type='text'/>
+                    </div>
+                    <div className="check2">
+                    <input type="file" onChange={captureFile} className="welp" />
+                    </div>
                     <br />
                     <button type="submit">submit</button>
             </form>

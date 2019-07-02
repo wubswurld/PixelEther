@@ -31,7 +31,7 @@ render() {
 return (
 <div>
     <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-  <a className="navbar-brand" id="title" href="#">PixelEther</a>
+  <a className="navbar-brand flux" id="title" href="#">PixelEther</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <Modalexport data={this.state.dataKey}

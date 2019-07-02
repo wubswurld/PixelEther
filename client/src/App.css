@@ -53,6 +53,7 @@ h3 {
 .imgurl {
   height: 350px;
   width: 350px;
+  position: relative;
 }
 .grid {
   display: grid;
@@ -104,7 +105,8 @@ h3 {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80%;
+  /* width: 100%; */
+  width: 100%;
   /* margin-left: 28.7%; */
   left: 0;
   right: 0;
@@ -117,7 +119,7 @@ h3 {
   position: relative;
 }
 
-.container:hover .overlay {
+.col-sm:hover .overlay {
   opacity: 1;
   margin: 0% auto;
 }
@@ -132,4 +134,42 @@ h3 {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.flux {
+  color: #426DFB;
+  font-size: 9vw;
+  line-height: 9vw;
+  text-shadow: 0 0 3vw rgb(60, 104, 248);
+}
+
+.flux {
+  animation: neon 2s linear infinite;
+  -moz-animation: neon 2s linear infinite;
+  -webkit-animation: neon 2s linear infinite;
+  -o-animation: neon 2s linear infinite;
+}
+ @keyframes neon {
+  from {
+    text-shadow: 0 0 3px rgba(202, 228, 225, 0.92), 0 0 5px rgba(202, 228, 225, 0.34), 0 0 12px rgba(236, 239, 241, 0.52), 0 0 15px rgba(245, 246, 248, 0.92), 0 0 24px rgba(239, 242, 245, 0.78), 0 0 24px rgba(252, 254, 255, 0.92);
+  }
+  to {
+    text-shadow: 0 0 3px rgba(202, 228, 225, 0.98), 0 0 5px rgba(202, 228, 225, 0.42), 0 0 12px rgba(234, 238, 243, 0.58), 0 0 17px rgba(237, 241, 245, 0.84), 0 0 28px rgba(235, 239, 243, 0.88), 0 0 30px #f5f6f7;
+  }
+}
+
+.check {
+  margin-left: 3%;
+}
+.check1 {
+  margin-left: 3%;
+}
+.check2 {
+  margin-left: 17%;
+  margin-top: 2%;
+  color: white;
+
+}
+.welp {
+  color: #f5f6f7;
 }
