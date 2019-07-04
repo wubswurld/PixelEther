@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
+import { InputGroup, InputGroupAddon, InputGroupText, Input } from 'reactstrap';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -42,17 +45,26 @@ arrowsArray.forEach(current => {
         }
     })
 })
-
         const { title, artist, updateValue, newSubmit, captureFile } = this.props;
         return (
             <div>
                 <h3>Create a new erc721!</h3>
+                <hr></hr>
             <form onSubmit={newSubmit}>
             <div className="check">
-                    <TextField id="standard-dense" label="Title" margin="dense" onChange={updateValue} className="check" value={title} name='title' type='text'/>
+                    <InputGroup>
+                    <InputGroupAddon addonType="prepend">Title</InputGroupAddon>
+                    <Input onChange={updateValue} className="checkme" value={title} name="title"/>
+                    </InputGroup>
+                    {/* <TextField id="standard-dense" label="Title" margin="dense" onChange={updateValue} className="check" id="dense" value={title} name='title' type='text'/> */}
                     </div>
-                    <div className="check1">
-                    <TextField id="standard-dense" label="Artist" margin="dense" onChange={updateValue} className='form-input' name='artist' value={artist} type='text'/>
+                    <hr></hr>
+                     <div className="check1">
+                     <InputGroup>
+                    <InputGroupAddon addonType="prepend">Artist</InputGroupAddon>
+                    <Input onChange={updateValue} className="checkme" name='artist' value={artist}/>
+                    </InputGroup>
+                    {/* <TextField id="standard-dense" label="Artist" margin="dense" onChange={updateValue} className='form-input' name='artist' value={artist} type='text'/> */}
                     </div>
                     <div className="check2">
                     <input type="file" onChange={captureFile} className="welp" />

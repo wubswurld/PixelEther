@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Media } from 'reactstrap';
 
 
 class Maptok extends React.Component {
@@ -52,16 +52,27 @@ class Maptok extends React.Component {
      }
      const listItems = this.state.allTokens.map((key) =>
      <div class="col-sm">
-     <div className="overlaycontainer" key={key}>
+     <div className="container" key={key}>
        {/* <div className="card-body"> */}
          {/* <h4 key={key[0]}>{key[0]}</h4>
          <p key={key[1]}>Artist: {key[1]}</p>
          <p key={key[2]}>Id: {key[2]}</p>
          <p key={key[3]}>Ipfs hash: {key[3]}</p> */}
          <img src={imgsrc + key[3]} className="imgurl"></img>
-         <div className="overlay" key={key}>
+         <div className="middle" key={key}>
             <div className="text">
-            <h4 key={key[0]}>{key[0]}</h4>
+            <Media>
+                <Media left top href="#">
+                </Media>
+                <Media body>
+                <Media heading key={key[0]}>{key[0]}
+                </Media>
+                <Media heading key={key[1]}>{key[1]}
+                </Media>
+                <Media key={key[3]}>{key[3]}
+                </Media>
+                </Media>
+            </Media>
             </div>
         </div>
          </div>
